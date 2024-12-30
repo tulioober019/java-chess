@@ -1,6 +1,6 @@
 # java-chess
 
-This is a bidimensional chess game written in Java SE Edition. This repository contains the source code as well as the documentation that I will incorporate. 
+This is a bidimensional chess game written in Java SE Edition. This repository contains the source code as well as the documentation that I will incorporate later
 
 To use and compile this software, you will need to have installed the Java Runtime Enviorment on your computer.
 
