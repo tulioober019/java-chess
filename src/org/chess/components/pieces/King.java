@@ -93,7 +93,12 @@ public final class King extends Piece implements Horizontal, Vertical, Diagonal,
 	
 	@Override
 	public boolean listThreats() {
-		Game.teamThreat.clear();
+		if (!Game.teamThreat.isEmpty()) {
+			for (Piece piece : Game.teamThreat) {
+				Game.teamThreat.remove(piece);
+			}
+		}
+
 		
 		for (Piece character: Game.getAllPotencialThreats(Game.opponent)) {
 			if (character instanceof WhitePawn) {
@@ -216,7 +221,7 @@ public final class King extends Piece implements Horizontal, Vertical, Diagonal,
 			}
 		}
 		
-		if (Game.teamThreat.size() > 0) return true;
+		if (!(Game.teamThreat.isEmpty())) return true;
 		else return false;
 	}
 	
