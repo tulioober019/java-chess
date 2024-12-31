@@ -8,7 +8,7 @@ import javax.swing.ImageIcon;
 
 public class PieceIcons {
 	// Base directory for the images.
-	public static final String ROOT_DIR			= System.getProperty("user.dir") + "\\src\\icos\\";
+	public static final String ROOT_DIR			= System.getProperty("user.dir") + "\\src\\org\\chess\\icos\\";
 	
 	// Icon assignment.
 	public static final ImageIcon BLACK_ROOK 	= new ImageIcon(ROOT_DIR + "black_rook.png");
