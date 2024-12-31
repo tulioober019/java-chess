@@ -94,9 +94,7 @@ public final class King extends Piece implements Horizontal, Vertical, Diagonal,
 	@Override
 	public boolean listThreats() {
 		if (!Game.teamThreat.isEmpty()) {
-			for (Piece piece : Game.teamThreat) {
-				Game.teamThreat.remove(piece);
-			}
+			Game.teamThreat.clear();
 		}
 
 		
@@ -117,7 +115,7 @@ public final class King extends Piece implements Horizontal, Vertical, Diagonal,
 							if (evaluateMove(0,pos,character) == 1) {
 								Game.teamThreat.add(character);
 								break;
-							}
+							} else continue;
 						}
 					} else break;
 				}
@@ -129,7 +127,7 @@ public final class King extends Piece implements Horizontal, Vertical, Diagonal,
 							if (evaluateMove(0,-pos,character) == 1) {
 								Game.teamThreat.add(character);
 								break;
-							}
+							} else continue;
 						}
 					} else break;
 				}
@@ -142,7 +140,7 @@ public final class King extends Piece implements Horizontal, Vertical, Diagonal,
 							if (evaluateMove(pos,0,character) == 1) {
 								Game.teamThreat.add(character);
 								break;
-							}
+							} else continue;
 						}
 					}
 				}
@@ -154,7 +152,7 @@ public final class King extends Piece implements Horizontal, Vertical, Diagonal,
 							if (evaluateMove(-pos,0,character) == 1) {
 								Game.teamThreat.add(character);
 								break;
-							}
+							} else continue;
 						}
 					}
 				}
@@ -167,7 +165,7 @@ public final class King extends Piece implements Horizontal, Vertical, Diagonal,
 							if (evaluateMove(-pos,-pos,character) == 1) {
 								Game.teamThreat.add(character);
 								break;
-							}
+							} else continue;
 						}
 					}
 				}
@@ -179,7 +177,7 @@ public final class King extends Piece implements Horizontal, Vertical, Diagonal,
 							if (evaluateMove(pos,-pos,character) == 1) {
 								Game.teamThreat.add(character);
 								break;
-							}
+							} else continue;
 						}
 					}
 				}
@@ -191,7 +189,7 @@ public final class King extends Piece implements Horizontal, Vertical, Diagonal,
 							if (evaluateMove(-pos,pos,character) == 1) {
 								Game.teamThreat.add(character);
 								break;
-							}
+							} else continue;
 						}
 					}
 				}
@@ -203,21 +201,23 @@ public final class King extends Piece implements Horizontal, Vertical, Diagonal,
 							if (evaluateMove(pos,pos,character) == 1) {
 								Game.teamThreat.add(character);
 								break;
-							}
+							} else continue;
 						}
 					}
 				}
 				
 			} else if (character instanceof Circular) {
-				if (evaluateMove(-1,-2,character) == 3 
-						|| evaluateMove(-1,2,character) == 3
-						|| evaluateMove(1,-2,character) == 3 
-						|| evaluateMove(1,2,character) == 3
-						|| evaluateMove(2,1,character) == 3
-						|| evaluateMove(2,-1,character) == 3
-						|| evaluateMove(-2,1,character) == 3
-						|| evaluateMove(-2,-1,character) == 3
-					) Game.teamThreat.add(character);
+				if (evaluateMove(-1,-2,character) == 1
+						|| evaluateMove(-1,2,character) == 1
+						|| evaluateMove(1,-2,character) == 1
+						|| evaluateMove(1,2,character) == 1
+						|| evaluateMove(2,1,character) == 1
+						|| evaluateMove(2,-1,character) == 1
+						|| evaluateMove(-2,1,character) == 1
+						|| evaluateMove(-2,-1,character) == 1
+					) {
+                    Game.teamThreat.add(character);
+                }
 			}
 		}
 		
