@@ -19,9 +19,9 @@ public interface PawnNorth extends Movable {
 		if (evaluateMove(-1,-1) == 1) showMove(-1,-1);
 	}
 
-	public default ArrayList<int[]> getPawnNorthPotentialMoves(int n) {
+	public default ArrayList<int[]> getPawnNorthPotentialMoves() {
 		ArrayList<int[]> potentialMoves = new ArrayList<int[]>();
-		if (evaluateMove(-1,1) == 1) potentialMoves.add(new int[] { -1, 1});
+		if (evaluateMove(-1,1) == 1 ) potentialMoves.add(new int[] { -1, 1});
 		if (evaluateMove(-1,-1) == 1) potentialMoves.add(new int[] { -1, -1});
 		return potentialMoves;
 	}

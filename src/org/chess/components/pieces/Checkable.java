@@ -4,5 +4,5 @@ public interface Checkable {
 	
 	public byte evaluateMove(int mY, int mX, Piece threat);
 	public boolean listThreats();
-	public boolean isInCheck();
+	//public boolean isInCheck();
 }

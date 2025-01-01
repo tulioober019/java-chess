@@ -32,9 +32,10 @@ public interface Movable {
 				targetPiece = (Piece) comps[0];
 				if (targetPiece.equals(Game.selectedPiece)) return 0;
 				else if ((targetPiece.TEAM != Game.selectedPiece.TEAM) && !(targetPiece instanceof Checkable)) return 1;
-				else return 2;
+				else if ((targetPiece.TEAM != Game.selectedPiece.TEAM) && (targetPiece instanceof Checkable)) return 2;
+				else return 3;
 			}
-		} catch (ArrayIndexOutOfBoundsException e) { return 3;}
+		} catch (ArrayIndexOutOfBoundsException e) { return 4;}
 		
 	}
 	
@@ -46,6 +47,15 @@ public interface Movable {
 			Game.highlightedPaths.add(Game.chessBoard.boardTiles[destY][destX]);
 			Game.chessBoard.boardTiles[destY][destX].highlightTile();
 		}
+	}
+
+	public default Piece getOccupantOfTIle(int mY, int mX) {
+		int destY = Game.selectedPiece.getCoordY() + mY;
+		int destX = Game.selectedPiece.getCoordX() + mX;
+
+		BoardTile destTile = Game.chessBoard.boardTiles[destY][destX];
+		Component[] comps = destTile.getComponents();
+		return (Piece) comps[0];
 	}
 	
 	/*

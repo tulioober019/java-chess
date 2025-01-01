@@ -14,14 +14,14 @@ import org.chess.components.pieces.move.Vertical;
 public final class King extends Piece implements Horizontal, Vertical, Diagonal, Checkable {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 
 	public King(int y, int x, String id, Icon ico, Team t) {
 		super(y, x, id, t);
 		this.setIcon(ico);
-		
+
 		this.addMouseListener(new MouseListener() {
 
 			@Override
@@ -29,9 +29,9 @@ public final class King extends Piece implements Horizontal, Vertical, Diagonal,
 				// TODO Auto-generated method stub
 				if (Game.turn == King.super.TEAM) {
 					Game.removeOldData();
-					
+
 					Game.collectData(King.this);
-					
+
 					King.this.showPosibleMoves();
 				}
 			}
@@ -39,27 +39,27 @@ public final class King extends Piece implements Horizontal, Vertical, Diagonal,
 			@Override
 			public void mousePressed(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 		});
 	}
 
@@ -70,12 +70,12 @@ public final class King extends Piece implements Horizontal, Vertical, Diagonal,
 		showVerticalPath(2);
 		showDiagonalPath(2);
 	}
-	
+
 	@Override
 	public byte evaluateMove(int mY, int mX, Piece threat) {
 		int destY = threat.getCoordY() + mY;
 		int destX = threat.getCoordX() + mX;
-		
+
 		try {
 			BoardTile dstLocation = Game.chessBoard.boardTiles[destY][destX];
 			Component[] comps = dstLocation.getComponents();
@@ -88,147 +88,28 @@ public final class King extends Piece implements Horizontal, Vertical, Diagonal,
 				if ((King.this.TEAM != threat.TEAM) && !(threat instanceof Checkable)) return 1;
 				else return 2;
 			}
-		} catch (ArrayIndexOutOfBoundsException e) { return 3;}
+		} catch (ArrayIndexOutOfBoundsException e) {
+			return 3;
+		}
 	}
-	
+
 	@Override
 	public boolean listThreats() {
 		if (!Game.teamThreat.isEmpty()) {
 			Game.teamThreat.clear();
 		}
 
-		
-		for (Piece character: Game.getAllPotencialThreats(Game.opponent)) {
+		for (Piece character : Game.getAllPotencialThreats(Game.opponent)) {
 			if (character instanceof WhitePawn) {
-				if ((evaluateMove(-1,1,character) == 1) || (evaluateMove(-1,-1,character) == 1))
-					Game.teamThreat.add(character); 
-				
-			} else if (character instanceof BlackPawn) {
-				if ((evaluateMove(1,1,character) == 1) || (evaluateMove(1,-1,character) == 1))
+				if (!(((WhitePawn) character).getPawnNorthPotentialMoves().isEmpty())) {
 					Game.teamThreat.add(character);
-				
-			} else if (character instanceof Horizontal) {
-				for (int pos = 0; pos < 8; pos++) {
-					if (evaluateMove(0,pos,character) < 3) {
-						if (evaluateMove(0,pos,character) == 2) break;
-						else {
-							if (evaluateMove(0,pos,character) == 1) {
-								Game.teamThreat.add(character);
-								System.out.println("Game");
-								break;
-							} else continue;
-						}
-					} else break;
 				}
-
-				for (int pos = 0; pos < 8; pos++) {
-					if (evaluateMove(0,-pos,character) < 3) {
-						if (evaluateMove(0,-pos,character) == 2) break;
-						else {
-							if (evaluateMove(0,-pos,character) == 1) {
-								Game.teamThreat.add(character);
-								break;
-							} else continue;
-						}
-					} else break;
+			} else if (character instanceof BlackPawn) {
+				if (!(((BlackPawn) character).getPawnSouthPotentialMoves().isEmpty())) {
+					Game.teamThreat.add(character);
 				}
-				
-			} else if (character instanceof Vertical) {
-				for (int pos = 0; pos < 8; pos++) {
-					if (evaluateMove(pos,0,character) < 3) {
-						if (evaluateMove(pos,0,character) == 2) break;
-						else {
-							if (evaluateMove(pos,0,character) == 1) {
-								Game.teamThreat.add(character);
-								break;
-							} else continue;
-						}
-					}
-				}
-
-				for (int pos = 0; pos < 8; pos++) {
-					if (evaluateMove(-pos,0,character) < 3) {
-						if (evaluateMove(-pos,0,character) == 2) break;
-						else {
-							if (evaluateMove(-pos,0,character) == 1) {
-								Game.teamThreat.add(character);
-								break;
-							} else continue;
-						}
-					}
-				}
-				
-			} else if (character instanceof Diagonal) {
-				for (int pos = 0; pos < 8; pos++) {
-					if (evaluateMove(-pos,-pos,character) < 3) {
-						if (evaluateMove(-pos,-pos,character) == 2) break;
-						else {
-							if (evaluateMove(-pos,-pos,character) == 1) {
-								Game.teamThreat.add(character);
-								break;
-							} else continue;
-						}
-					}
-				}
-
-				for (int pos = 0; pos < 8; pos++) {
-					if (evaluateMove(pos,-pos,character) < 3) {
-						if (evaluateMove(pos,-pos,character) == 2) break;
-						else {
-							if (evaluateMove(pos,-pos,character) == 1) {
-								Game.teamThreat.add(character);
-								break;
-							} else continue;
-						}
-					}
-				}
-
-				for (int pos = 0; pos < 8; pos++) {
-					if (evaluateMove(-pos,pos,character) < 3) {
-						if (evaluateMove(-pos,pos,character) == 2) break;
-						else {
-							if (evaluateMove(-pos,pos,character) == 1) {
-								Game.teamThreat.add(character);
-								break;
-							} else continue;
-						}
-					}
-				}
-
-				for (int pos = 0; pos < 8; pos++) {
-					if (evaluateMove(pos,pos,character) < 3) {
-						if (evaluateMove(pos,pos,character) == 2) break;
-						else {
-							if (evaluateMove(pos,pos,character) == 1) {
-								Game.teamThreat.add(character);
-								break;
-							} else continue;
-						}
-					}
-				}
-
-			} else if (character instanceof Circular) {
-				if (evaluateMove(-1,-2,character) == 1
-						|| evaluateMove(-1,2,character) == 1
-						|| evaluateMove(1,-2,character) == 1
-						|| evaluateMove(1,2,character) == 1
-						|| evaluateMove(2,1,character) == 1
-						|| evaluateMove(2,-1,character) == 1
-						|| evaluateMove(-2,1,character) == 1
-						|| evaluateMove(-2,-1,character) == 1
-					) {
-                    Game.teamThreat.add(character);
-                }
 			}
 		}
-		
-		if (!(Game.teamThreat.isEmpty())) return true;
-		else return false;
+		return !(Game.teamThreat.isEmpty());
 	}
-	
-	@Override
-	public boolean isInCheck() {
-		return false;
-	}
-
 }
