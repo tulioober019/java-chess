@@ -79,13 +79,13 @@ public final class King extends Piece implements Horizontal, Vertical, Diagonal,
 		try {
 			BoardTile dstLocation = Game.chessBoard.boardTiles[destY][destX];
 			Component[] comps = dstLocation.getComponents();
-			Piece target;
+			//Piece target;
 
 			if (comps.length == 0) return 0;
 			else {
-				target = (Piece) comps[0];
-				if (target.equals(threat)) return 0;
-				else if ((target.TEAM != threat.TEAM) && !(target instanceof Checkable)) return 1;
+				//target = (Piece) comps[0];
+				//if (target.equals(threat)) return 0;
+				if ((King.this.TEAM != threat.TEAM) && !(threat instanceof Checkable)) return 1;
 				else return 2;
 			}
 		} catch (ArrayIndexOutOfBoundsException e) { return 3;}
@@ -114,6 +114,7 @@ public final class King extends Piece implements Horizontal, Vertical, Diagonal,
 						else {
 							if (evaluateMove(0,pos,character) == 1) {
 								Game.teamThreat.add(character);
+								System.out.println("Game");
 								break;
 							} else continue;
 						}
@@ -205,7 +206,7 @@ public final class King extends Piece implements Horizontal, Vertical, Diagonal,
 						}
 					}
 				}
-				
+
 			} else if (character instanceof Circular) {
 				if (evaluateMove(-1,-2,character) == 1
 						|| evaluateMove(-1,2,character) == 1

@@ -21,7 +21,9 @@ public interface Movable {
 		int destX = Game.selectedPiece.getCoordX() + mX;
 		
 		try {
+			// Obtain destination location in the board.
 			BoardTile dstLocation = Game.chessBoard.boardTiles[destY][destX];
+			// Get list of components in that particular tile.
 			Component[] comps = dstLocation.getComponents();
 			Piece targetPiece;
 			
