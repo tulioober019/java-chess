@@ -62,4 +62,5 @@ public interface Movable {
 	 * This function is designed to be implemented in all the Piece classes.
 	 */
 	public void showPosibleMoves();
+
 }

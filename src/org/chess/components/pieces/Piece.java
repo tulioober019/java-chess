@@ -14,6 +14,7 @@ public class Piece extends JLabel {
 	int counter;
 	public Team TEAM;
 	boolean atacked;
+	boolean move = true;
 	
 	public Piece(int y, int x, String id, Team t) {
 		//this.setCoordinates(y, x);
@@ -102,5 +103,17 @@ public class Piece extends JLabel {
 				break;
 		}	
 		return coordinates;
+	}
+
+	public void immobilize() {
+		this.move = false;
+	}
+
+	public void mobilize() {
+		this.move = true;
+	}
+
+	public boolean isMovable() {
+		return this.move;
 	}
 }
