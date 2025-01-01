@@ -1,5 +1,7 @@
 package org.chess.components.pieces.move;
 
+import java.util.ArrayList;
+
 public interface PawnNorth extends Movable {
 
 	public default void showPath(int n) {
@@ -15,5 +17,12 @@ public interface PawnNorth extends Movable {
 		}
 		if (evaluateMove(-1,1) == 1) showMove(-1,1);
 		if (evaluateMove(-1,-1) == 1) showMove(-1,-1);
+	}
+
+	public default ArrayList<int[]> getPawnNorthPotentialMoves(int n) {
+		ArrayList<int[]> potentialMoves = new ArrayList<int[]>();
+		if (evaluateMove(-1,1) == 1) potentialMoves.add(new int[] { -1, 1});
+		if (evaluateMove(-1,-1) == 1) potentialMoves.add(new int[] { -1, -1});
+		return potentialMoves;
 	}
 }
