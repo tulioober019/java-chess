@@ -95,7 +95,7 @@ public final class King extends Piece implements Horizontal, Vertical, Diagonal,
 
 	@Override
 	public boolean listThreats() {
-		if (!Game.teamThreat.isEmpty()) {
+		if (!(Game.teamThreat.isEmpty())) {
 			Game.teamThreat.clear();
 		}
 
@@ -109,7 +109,32 @@ public final class King extends Piece implements Horizontal, Vertical, Diagonal,
 					Game.teamThreat.add(character);
 				}
 			}
+
+			if (character instanceof Horizontal) {
+				if (!(((Horizontal) character).getHorizontalPotentialMoves().isEmpty())) {
+					Game.teamThreat.add(character);
+				}
+			}
+
+			if (character instanceof Vertical) {
+				if (!(((Vertical) character).getVerticalPotentialMoves().isEmpty())) {
+					Game.teamThreat.add(character);
+				}
+			}
+
+			if (character instanceof Diagonal) {
+				if (!(((Diagonal) character).getDiagonalPotentialMoves().isEmpty())) {
+					Game.teamThreat.add(character);
+				}
+			}
+
+			if (character instanceof Circular) {
+				if (!(((Circular) character).getCircularPotentialMoves().isEmpty())) {
+					Game.teamThreat.add(character);
+				}
+			}
 		}
+
 		return !(Game.teamThreat.isEmpty());
 	}
 }

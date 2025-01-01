@@ -22,7 +22,7 @@ public interface PawnNorth extends Movable {
 	public default ArrayList<int[]> getPawnNorthPotentialMoves() {
 		ArrayList<int[]> potentialMoves = new ArrayList<int[]>();
 		if (evaluateMove(-1,1) == 2 ) potentialMoves.add(new int[] { -1, 1});
-		if (evaluateMove(-1,-1) == 2) potentialMoves.add(new int[] { -1, -1});
+		if (evaluateMove(-1,-1) == 2 ) potentialMoves.add(new int[] { -1, -1});
 		return potentialMoves;
 	}
 }
