@@ -29,7 +29,7 @@ public interface Horizontal extends Movable {
 		ArrayList<int[]> potentialMoves = new ArrayList<int[]>();
 		for (int pos = 0; pos < 8; pos++) {
 			if (evaluateMove(0,pos) < 4) {
-				if (evaluateMove(0,pos) > 2 || evaluateMove(0,pos) < 2) break;
+				if (evaluateMove(0,pos) > 2 || evaluateMove(0,pos) == 1) break;
 				if (evaluateMove(0,pos) == 2) {
 					potentialMoves.add(new int[] {0,pos});
 					break;
@@ -39,7 +39,7 @@ public interface Horizontal extends Movable {
 
 		for (int pos = 0; pos < 8; pos++) {
 			if (evaluateMove(0,-pos) < 4) {
-				if (evaluateMove(0,-pos) > 2 || evaluateMove(0,-pos) < 2) break;
+				if (evaluateMove(0,-pos) > 2 || evaluateMove(0,pos) == 1) break;
 				if (evaluateMove(0,-pos) == 2) {
 					potentialMoves.add(new int[] {0,-pos});
 					break;

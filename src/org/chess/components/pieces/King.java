@@ -108,6 +108,10 @@ public final class King extends Piece implements Horizontal, Vertical, Diagonal,
 				if (!(((BlackPawn) character).getPawnSouthPotentialMoves().isEmpty())) {
 					Game.teamThreat.add(character);
 				}
+			} else if (character instanceof Circular) {
+				if (!(((Circular) character).getCircularPotentialMoves().isEmpty())) {
+					Game.teamThreat.add(character);
+				}
 			}
 
 			if (character instanceof Horizontal) {
@@ -128,11 +132,6 @@ public final class King extends Piece implements Horizontal, Vertical, Diagonal,
 				}
 			}
 
-			if (character instanceof Circular) {
-				if (!(((Circular) character).getCircularPotentialMoves().isEmpty())) {
-					Game.teamThreat.add(character);
-				}
-			}
 		}
 
 		return !(Game.teamThreat.isEmpty());

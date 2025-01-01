@@ -26,7 +26,7 @@ public interface Vertical extends Movable {
 		ArrayList<int[]> potentialMoves = new ArrayList<int[]>();
 		for (int pos = 0; pos < 8; pos++) {
 			if (evaluateMove(pos,0) < 4) {
-				if (evaluateMove(pos,0) > 2 || evaluateMove(pos,0) < 2) break;
+				if (evaluateMove(pos,0) > 2 || evaluateMove(pos,0) == 1) break;
 				if (evaluateMove(pos,0) == 2) {
 					potentialMoves.add(new int[] {pos,0});
 					break;
@@ -36,7 +36,7 @@ public interface Vertical extends Movable {
 
 		for (int pos = 0; pos < 8; pos++) {
 			if (evaluateMove(-pos,0) < 4) {
-				if (evaluateMove(-pos,0) > 2 || evaluateMove(-pos,0) < 2) break;
+				if (evaluateMove(-pos,0) > 2 || evaluateMove(-pos,0) == 1) break;
 				if (evaluateMove(-pos,0) == 2) {
 					potentialMoves.add(new int[] {-pos,0});
 					break;
