@@ -34,7 +34,7 @@ public class BoardTile extends JPanel {
 				int col = Game.chessBoard.getComponentZOrder(BoardTile.this) % 8;
 				
 				for (BoardTile tile: Game.highlightedPaths) {
-					if ((row == (Game.chessBoard.getComponentZOrder(tile) / 8)) && (col == Game.chessBoard.getComponentZOrder(tile) % 8)) {	
+					if ((row == (Game.chessBoard.getComponentZOrder(tile) / 8)) && (col == Game.chessBoard.getComponentZOrder(tile) % 8) || BoardTile.this.isHighlighted()) {
 						// Assign destination coordinates
 						Game.destination[0] = (Game.chessBoard.getComponentZOrder(BoardTile.this)) / 8;
 						Game.destination[1] = (Game.chessBoard.getComponentZOrder(BoardTile.this)) % 8;
