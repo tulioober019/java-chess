@@ -9,4 +9,4 @@ To use and compile this software, you will need to have installed the Java Runti
 ## References
 Chess piece icons: https://gitlab.gnome.org/GNOME/gnome-chess/-/tree/main/data/pieces/simple?ref_type=heads
 
-©️ Copyright 2025 - Marco Tulio
+©️ Copyright 2025 - tulioober019
