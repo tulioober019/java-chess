@@ -4,8 +4,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import javax.swing.BorderFactory;
-import javax.swing.JPanel;
+import javax.swing.*;
+
 import org.chess.Game;
 import org.chess.components.pieces.Piece;
 import org.chess.components.pieces.Pieces;
@@ -57,6 +57,9 @@ public class BoardTile extends JPanel {
 							System.out.println("It is the black team's turn!");
 							if (Pieces.blackKing.listThreats()) {
 								System.out.println("Black team in check!");
+								try {
+									throw new TeamInCheckException();
+								} catch (Exception ex) { System.out.println(ex.getMessage()); }
 							}
 							
 						} else if (Game.turn == Team.BLACK) {
@@ -65,6 +68,9 @@ public class BoardTile extends JPanel {
 							System.out.println("It is the white team's turn!");
 							if (Pieces.whiteKing.listThreats()) {
 								System.out.println("White team in check!");
+								try {
+									throw new TeamInCheckException();
+								} catch (Exception ex) { System.out.println(ex.getMessage()); }
 							}
 						}
 						
